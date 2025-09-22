@@ -1,4 +1,13 @@
-name: Build php_curl (Schannel)
+- name: Prepare build tree
+  run: |
+    cd sdk
+    .\bin\phpsdk_buildtree php-7.1 x64
+    cd phpdev\vc15\x64
+    git clone https://github.com/php/php-src.git
+    cd php-src
+    git checkout PHP-7.1.7
+    ..\..\..\..\bin\phpsdk_deps --update
+    buildconfname: Build php_curl (Schannel)
 
 on:
   workflow_dispatch:
